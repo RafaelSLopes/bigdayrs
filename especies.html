@@ -57,79 +57,6 @@
   </main>
 
   <script>
-    // CSV data - substitua por seu arquivo CSV real
-    const SPECIES_CSV = `observacoes;nome_popular;nome_cientifico
-6;irerê;Dendrocygna viduata
-1;marreca-ananaí;Amazonetta brasiliensis
-14;pombo-doméstico;Columba livia
-1;pomba-asa-branca;Patagioenas picazuro
-2;rolinha-roxa;Columbina talpacoti
-1;rolinha-picuí;Columbina picui
-14;avoante;Zenaida auriculata
-4;anu-branco;Guira guira
-1;alma-de-gato;Piaya cayana
-2;andorinhão-do-temporal;Chaetura meridionalis
-1;besourinho-de-bico-vermelho;Chlorostilbon lucidus
-1;beija-flor-dourado;Hylocharis chrysura
-2;saracura-do-banhado;Pardirallus sanguinolentus
-3;saracuruçu;Aramides ypecaha
-1;galinha-d'água;Gallinula galeata
-6;quero-quero;Vanellus chilensis
-18;jaçanã;Jacana jacana
-1;maguari;Ciconia maguari
-4;biguá;Nannopterum brasilianum
-40;caraúna;Plegadis chihi
-3;tapicuru;Phimosus infuscatus
-1;socó-boi;Tigrisoma lineatum
-3;socó-dorminhoco;Nycticorax nycticorax
-1;garça-branca-pequena;Egretta thula
-1;socozinho;Butorides striata
-3;garça-branca-grande;Ardea alba
-1;garça-moura;Ardea cocoi
-14;urubu-preto;Coragyps atratus
-2;gavião-caramujeiro;Rostrhamus sociabilis
-1;pica-pau-verde-barrado;Colaptes melanochloros
-4;carcará;Caracara plancus
-1;carrapateiro;Daptrius chimachima
-1;chimango;Daptrius chimango
-2;falcão-peregrino;Falco peregrinus
-104;caturrita;Myiopsitta monachus
-10;periquito-de-encontro-amarelo;Brotogeris chiriri
-8;joão-de-barro;Furnarius rufus
-2;joão-botina-do-brejo;Phacellodomus ferrugineigula
-4;curutié;Certhiaxis cinnamomeus
-1;bichoita;Schoeniophylax phryganophilus
-1;joão-teneném;Synallaxis spixi
-1;guaracava-de-barriga-amarela;Elaenia flavogaster
-1;noivinha;Xolmis irupero
-1;suiriri-cavaleiro;Machetornis rixosa
-5;bem-te-vi;Pitangus sulphuratus
-2;suiriri;Tyrannus melancholicus
-2;andorinha-de-sobre-branco;Tachycineta leucorrhoa
-3;andorinha-grande;Progne chalybea
-4;andorinha-do-campo;Progne tapera
-2;balança-rabo-de-máscara;Polioptila dumicola
-2;corruíra;Troglodytes musculus
-7;sabiá-laranjeira;Turdus rufiventris
-12;pardal;Passer domesticus
-2;tico-tico;Zonotrichia capensis
-3;polícia-inglesa-do-sul;Leistes superciliaris
-5;chupim;Molothrus bonariensis
-1;asa-de-telha;Agelaioides badius
-1;dragão;Pseudoleistes virescens
-2;pia-cobra;Geothlypis velata
-3;cardeal;Paroaria coronata
-1;cavalaria;Paroaria capitata
-2;sanhaço-cinzento;Thraupis sayaca
-3;quem-te-vestiu;Poospiza nigrorufa
-3;canário-da-terra;Sicalis flaveola
-1;sabiá-do-banhado;Embernagra platensis
-1;coleirinho;Sporophila caerulescens
-2;coleiro-do-brejo;Sporophila collaris
-1;tico-tico-rei;Coryphospingus cucullatus
-2;cambacica;Coereba flaveola
-1;galinha-d'angola;Numida meleagris`;
-
     // Função para processar CSV
     function parseCSV(csvText) {
       const lines = csvText.split('\n').filter(line => line.trim() !== '');
@@ -177,21 +104,50 @@
     // Função para carregar dados de arquivo CSV externo
     async function loadCSVFromFile() {
       try {
+        // Tenta carregar do caminho raiz primeiro (GitHub Pages)
+        const response = await fetch('/especies.csv');
+        if (response.ok) {
+          const csvText = await response.text();
+          return parseCSV(csvText);
+        }
+      } catch (error) {
+        console.log('Tentando caminho relativo...');
+      }
+      
+      try {
+        // Fallback: caminho relativo (desenvolvimento local)
         const response = await fetch('especies.csv');
         if (response.ok) {
           const csvText = await response.text();
           return parseCSV(csvText);
         }
       } catch (error) {
-        console.log('Usando dados embutidos - arquivo CSV não encontrado');
+        console.error('Erro ao carregar especies.csv:', error);
       }
-      return parseCSV(SPECIES_CSV); // Fallback para dados embutidos
+      
+      // Retorna array vazio se não encontrar o arquivo
+      return [];
     }
 
     // Inicialização
     async function init() {
       const speciesData = await loadCSVFromFile();
-      renderSpeciesTable(speciesData);
+      
+      if (speciesData.length === 0) {
+        // Mostra mensagem de erro se não encontrar CSV
+        const tbody = document.querySelector('#species-table tbody');
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="3" style="text-align: center; padding: 20px; color: #718096;">
+              Arquivo especies.csv não encontrado. 
+              Por favor, verifique se o arquivo está na pasta correta.
+            </td>
+          </tr>
+        `;
+      } else {
+        renderSpeciesTable(speciesData);
+      }
+      
       loadUpdateDate();
     }
 
