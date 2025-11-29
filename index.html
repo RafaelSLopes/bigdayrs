@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Ranking - Big Day style</title>
   <link rel="stylesheet" href="styles.css" />
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
   <main class="container">
@@ -13,7 +14,12 @@
       <div class="logo" id="logo">
         <img src="logo.png" alt="Big Day Logo" class="logo-image">
       </div>
-      <h1 class="event-title">1º Big Day RS - Novembro/2025</h1>
+      <h1 class="event-title">1º Big Day RS</h1>
+      
+      <!-- Link para página de espécies -->
+      <div class="species-link">
+        <a href="especies.html">📋 Ver Lista Completa de Espécies</a>
+      </div>
     </header>
 
     <section class="rankings">
@@ -21,7 +27,7 @@
       <article class="card" id="observadores-species-card">
         <h2>Observadores — Nº de espécies</h2>
         <div class="table-wrap" id="observadores-species-wrap">
-          <table id="observadores-species-table" class="ranking-table" aria-label="Top de espécies por observador">
+          <table id="observadores-species-table" class="ranking-table hidden-thead" aria-label="Top de espécies por observador">
             <thead>
               <tr><th>Colocação</th><th>Nome</th><th>Quantidade</th></tr>
             </thead>
@@ -35,7 +41,7 @@
       <article class="card" id="observadores-lists-card">
         <h2>Observadores — Nº de listas</h2>
         <div class="table-wrap" id="observadores-lists-wrap">
-          <table id="observadores-lists-table" class="ranking-table" aria-label="Top de listas por observador">
+          <table id="observadores-lists-table" class="ranking-table hidden-thead" aria-label="Top de listas por observador">
             <thead>
               <tr><th>Colocação</th><th>Nome</th><th>Quantidade</th></tr>
             </thead>
@@ -49,7 +55,7 @@
       <article class="card" id="municipios-species-card">
         <h2>Municípios — Nº de espécies</h2>
         <div class="table-wrap" id="municipios-species-wrap">
-          <table id="municipios-species-table" class="ranking-table" aria-label="Top de espécies por município">
+          <table id="municipios-species-table" class="ranking-table hidden-thead" aria-label="Top de espécies por município">
             <thead>
               <tr><th>Colocação</th><th>Município</th><th>Quantidade</th></tr>
             </thead>
@@ -63,7 +69,7 @@
       <article class="card" id="municipios-lists-card">
         <h2>Municípios — Nº de listas</h2>
         <div class="table-wrap" id="municipios-lists-wrap">
-          <table id="municipios-lists-table" class="ranking-table" aria-label="Top de listas por município">
+          <table id="municipios-lists-table" class="ranking-table hidden-thead" aria-label="Top de listas por município">
             <thead>
               <tr><th>Colocação</th><th>Município</th><th>Quantidade</th></tr>
             </thead>
