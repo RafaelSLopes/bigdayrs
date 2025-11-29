@@ -56,10 +56,16 @@ function prepareRanking(rows){
   });
 }
 
-// Renderiza top N em tabela
+// Renderiza top N em tabela SEM thead
 function renderTop(tableId, data, topN=10){
-  const tbody = document.querySelector(`#${tableId} tbody`);
-  if (!tbody) return;
+  const table = document.getElementById(tableId);
+  if (!table) return;
+  
+  // Remove thead se existir
+  const thead = table.querySelector('thead');
+  if (thead) thead.remove();
+  
+  const tbody = table.querySelector('tbody');
   tbody.innerHTML = "";
   const shown = data.slice(0, topN);
   for (const row of shown) {
