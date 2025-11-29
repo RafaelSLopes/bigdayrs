@@ -2,7 +2,7 @@
 const CACHE_VERSION = "1.0.0";
 
 // Texto de atualização - modifique aqui
-const UPDATE_TEXT = "31 de dezembro de 2024, 23:59<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
+const UPDATE_TEXT = "29 de novembro de 2025, 13:14<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
 
 // Dados centralizados - apenas aqui!
 const RANKING_DATA = {
@@ -163,4 +163,5 @@ function init(){
 
 // Run
 document.addEventListener("DOMContentLoaded", init);
+
 
