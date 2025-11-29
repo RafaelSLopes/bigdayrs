@@ -1,0 +1,201 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Espécies Observadas - Big Day</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .container { max-width: 900px; margin: 24px auto; padding: 16px; }
+    .back { margin-bottom: 12px; display:inline-block; text-decoration:none; color:#2b6cb0; font-weight:600; }
+    .species-table { width: 100%; }
+    .species-table th { text-align: left; }
+    .species-table td:nth-child(1) { text-align: center; width: 80px; }
+    .species-header { text-align: center; margin-bottom: 20px; }
+    /* Zebrado adicionado */
+    .species-table tbody tr:nth-child(odd) { background: #fff; }
+    .species-table tbody tr:nth-child(even) { background: #fbfcff; }
+    .species-table tbody td { padding: 10px; border-bottom: 1px solid #f0f2f6; }
+  </style>
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="index.html">← Voltar ao Ranking</a>
+    
+    <header class="header">
+      <!-- Logo PNG com fundo transparente -->
+      <div class="logo" id="logo">
+        <img src="logo.png" alt="Big Day Logo" class="logo-image">
+      </div>
+      <h1 class="event-title">1º Big Day RS</h1>
+      
+      <!-- Link para página de espécies -->
+      <div class="species-link">
+        <a href="especies.html">📋 Ver Lista Completa de Espécies</a>
+      </div>
+    </header>
+
+    <div class="card">
+      <div class="table-wrap">
+        <table id="species-table" class="species-table">
+          <thead>
+            <tr>
+              <th>Observações</th>
+              <th>Nome Popular</th>
+              <th>Nome Científico</th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div class="update-footer">
+      <p>Dados atualizados até: <strong id="update-date">Carregando...</strong></p>
+    </div>
+  </main>
+
+  <script>
+    // CSV data - substitua por seu arquivo CSV real
+    const SPECIES_CSV = `observacoes;nome_popular;nome_cientifico
+6;irerê;Dendrocygna viduata
+1;marreca-ananaí;Amazonetta brasiliensis
+14;pombo-doméstico;Columba livia
+1;pomba-asa-branca;Patagioenas picazuro
+2;rolinha-roxa;Columbina talpacoti
+1;rolinha-picuí;Columbina picui
+14;avoante;Zenaida auriculata
+4;anu-branco;Guira guira
+1;alma-de-gato;Piaya cayana
+2;andorinhão-do-temporal;Chaetura meridionalis
+1;besourinho-de-bico-vermelho;Chlorostilbon lucidus
+1;beija-flor-dourado;Hylocharis chrysura
+2;saracura-do-banhado;Pardirallus sanguinolentus
+3;saracuruçu;Aramides ypecaha
+1;galinha-d'água;Gallinula galeata
+6;quero-quero;Vanellus chilensis
+18;jaçanã;Jacana jacana
+1;maguari;Ciconia maguari
+4;biguá;Nannopterum brasilianum
+40;caraúna;Plegadis chihi
+3;tapicuru;Phimosus infuscatus
+1;socó-boi;Tigrisoma lineatum
+3;socó-dorminhoco;Nycticorax nycticorax
+1;garça-branca-pequena;Egretta thula
+1;socozinho;Butorides striata
+3;garça-branca-grande;Ardea alba
+1;garça-moura;Ardea cocoi
+14;urubu-preto;Coragyps atratus
+2;gavião-caramujeiro;Rostrhamus sociabilis
+1;pica-pau-verde-barrado;Colaptes melanochloros
+4;carcará;Caracara plancus
+1;carrapateiro;Daptrius chimachima
+1;chimango;Daptrius chimango
+2;falcão-peregrino;Falco peregrinus
+104;caturrita;Myiopsitta monachus
+10;periquito-de-encontro-amarelo;Brotogeris chiriri
+8;joão-de-barro;Furnarius rufus
+2;joão-botina-do-brejo;Phacellodomus ferrugineigula
+4;curutié;Certhiaxis cinnamomeus
+1;bichoita;Schoeniophylax phryganophilus
+1;joão-teneném;Synallaxis spixi
+1;guaracava-de-barriga-amarela;Elaenia flavogaster
+1;noivinha;Xolmis irupero
+1;suiriri-cavaleiro;Machetornis rixosa
+5;bem-te-vi;Pitangus sulphuratus
+2;suiriri;Tyrannus melancholicus
+2;andorinha-de-sobre-branco;Tachycineta leucorrhoa
+3;andorinha-grande;Progne chalybea
+4;andorinha-do-campo;Progne tapera
+2;balança-rabo-de-máscara;Polioptila dumicola
+2;corruíra;Troglodytes musculus
+7;sabiá-laranjeira;Turdus rufiventris
+12;pardal;Passer domesticus
+2;tico-tico;Zonotrichia capensis
+3;polícia-inglesa-do-sul;Leistes superciliaris
+5;chupim;Molothrus bonariensis
+1;asa-de-telha;Agelaioides badius
+1;dragão;Pseudoleistes virescens
+2;pia-cobra;Geothlypis velata
+3;cardeal;Paroaria coronata
+1;cavalaria;Paroaria capitata
+2;sanhaço-cinzento;Thraupis sayaca
+3;quem-te-vestiu;Poospiza nigrorufa
+3;canário-da-terra;Sicalis flaveola
+1;sabiá-do-banhado;Embernagra platensis
+1;coleirinho;Sporophila caerulescens
+2;coleiro-do-brejo;Sporophila collaris
+1;tico-tico-rei;Coryphospingus cucullatus
+2;cambacica;Coereba flaveola
+1;galinha-d'angola;Numida meleagris`;
+
+    // Função para processar CSV
+    function parseCSV(csvText) {
+      const lines = csvText.split('\n').filter(line => line.trim() !== '');
+      const headers = lines[0].split(';').map(header => header.trim());
+      
+      const data = [];
+      for (let i = 1; i < lines.length; i++) {
+        const values = lines[i].split(';').map(value => value.trim());
+        const item = {};
+        headers.forEach((header, index) => {
+          item[header] = values[index] || '';
+        });
+        data.push(item);
+      }
+      return data;
+    }
+
+    // Função para renderizar a tabela
+    function renderSpeciesTable(data) {
+      const tbody = document.querySelector('#species-table tbody');
+      tbody.innerHTML = '';
+      
+      data.forEach(species => {
+        const tr = document.createElement('tr');
+        tr.innerHTML = `
+          <td>${species.observacoes}</td>
+          <td>${species.nome_popular}</td>
+          <td><em>${species.nome_cientifico}</em></td>
+        `;
+        tbody.appendChild(tr);
+      });
+    }
+
+    // Função para buscar dados de atualização do script principal
+    function loadUpdateDate() {
+      // Tenta buscar do script.js principal
+      if (typeof getUpdateText === 'function') {
+        document.getElementById('update-date').textContent = getUpdateText();
+      } else {
+        // Fallback - você pode definir uma data manualmente aqui
+        document.getElementById('update-date').textContent = '31 de dezembro de 2024, 23:59';
+      }
+    }
+
+    // Função para carregar dados de arquivo CSV externo
+    async function loadCSVFromFile() {
+      try {
+        const response = await fetch('especies.csv');
+        if (response.ok) {
+          const csvText = await response.text();
+          return parseCSV(csvText);
+        }
+      } catch (error) {
+        console.log('Usando dados embutidos - arquivo CSV não encontrado');
+      }
+      return parseCSV(SPECIES_CSV); // Fallback para dados embutidos
+    }
+
+    // Inicialização
+    async function init() {
+      const speciesData = await loadCSVFromFile();
+      renderSpeciesTable(speciesData);
+      loadUpdateDate();
+    }
+
+    document.addEventListener('DOMContentLoaded', init);
+  </script>
+</body>
+</html>
