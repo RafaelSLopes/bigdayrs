@@ -75,3 +75,36 @@ html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe U
 .update-footer strong {
   color: #4a5568;
 }
+
+/* Link para espécies */
+.species-link {
+  margin-top: 12px;
+}
+
+.species-link a {
+  color: #3182ce;
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 6px 12px;
+  border: 1px solid #3182ce;
+  border-radius: 6px;
+  transition: all 0.2s;
+}
+
+.species-link a:hover {
+  background: #3182ce;
+  color: white;
+}
+
+.hidden-thead thead {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
