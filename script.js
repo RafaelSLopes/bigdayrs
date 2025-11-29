@@ -2,50 +2,62 @@
 const CACHE_VERSION = "1.0.0";
 
 // Texto de atualização - modifique aqui
-const UPDATE_TEXT = "29 de novembro de 2025, 13:14<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
+const UPDATE_TEXT = "29 de novembro de 2025, 13:29<br><br> O Big Day RS é um evento independente inspirado no eBird (Big Day), com objetivo de observar aves gaúchas, fortalecer a ciência cidadã e a conexão com a natureza.";
 
 // Dados centralizados - apenas aqui!
 const RANKING_DATA = {
   // Observadores - Espécies
   observadores_species: [
   { nome: "Raphael Kurz - Aves do Sul", quantidade: 58},
-  { nome: "Guillermo Andreo", quantidade: 79},
-  { nome: "Ines Vasconcelos", quantidade: 16},
-  { nome: "Demétrius Lima", quantidade: 12},
-  { nome: "Gustavo Henrique Lambert", quantidade: 18},
-  { nome: "Márcia Rodrigues", quantidade: 26}
+{ nome: "Guillermo Andreo", quantidade: 79},
+{ nome: "Ines Vasconcelos", quantidade: 16},
+{ nome: "Demétrius Lima", quantidade: 12},
+{ nome: "Gustavo Henrique Lambert", quantidade: 18},
+{ nome: "Márcia Rodrigues", quantidade: 26},
+{ nome: "Letícia Matheus Baccarin", quantidade: 18},
+{ nome: "Filipe Bernardi", quantidade: 66},
+{ nome: "Andrei Langeloh Roos", quantidade: 66}
   ],
   
   // Observadores - Listas
   observadores_lists: [
   { nome: "Raphael Kurz - Aves do Sul", quantidade: 6},
-  { nome: "Guillermo Andreo", quantidade: 3},
-  { nome: "Ines Vasconcelos", quantidade: 1},
-  { nome: "Demétrius Lima", quantidade: 3},
-  { nome: "Gustavo Henrique Lambert", quantidade: 1},
-  { nome: "Márcia Rodrigues", quantidade: 1}
+{ nome: "Guillermo Andreo", quantidade: 3},
+{ nome: "Ines Vasconcelos", quantidade: 1},
+{ nome: "Demétrius Lima", quantidade: 3},
+{ nome: "Gustavo Henrique Lambert", quantidade: 1},
+{ nome: "Márcia Rodrigues", quantidade: 1},
+{ nome: "Letícia Matheus Baccarin", quantidade: 1},
+{ nome: "Filipe Bernardi", quantidade: 5},
+{ nome: "Andrei Langeloh Roos", quantidade: 5}
   ],
   
   // Municípios - Espécies
   municipios_species: [
   { nome: "Pelotas", quantidade: 8},
-  { nome: "Rio Grande", quantidade: 56},
-  { nome: "Canoas", quantidade: 59},
-  { nome: "Porto Alegre", quantidade: 50},
-  { nome: "Alvorada", quantidade: 12},
-  { nome: "Hulha Negra", quantidade: 18},
-  { nome: "Santo Ângelo", quantidade: 26}
+{ nome: "Rio Grande", quantidade: 56},
+{ nome: "Canoas", quantidade: 59},
+{ nome: "Porto Alegre", quantidade: 50},
+{ nome: "Alvorada", quantidade: 12},
+{ nome: "Hulha Negra", quantidade: 18},
+{ nome: "Santo Ângelo", quantidade: 26},
+{ nome: "Jaquirana", quantidade: 18},
+{ nome: "São Marcos", quantidade: 19},
+{ nome: "Caxias do Sul", quantidade: 62}
   ],
   
   // Municípios - Listas
   municipios_lists: [
   { nome: "Pelotas", quantidade: 1},
-  { nome: "Rio Grande", quantidade: 5},
-  { nome: "Canoas", quantidade: 1},
-  { nome: "Porto Alegre", quantidade: 3},
-  { nome: "Alvorada", quantidade: 3},
-  { nome: "Hulha Negra", quantidade: 1},
-  { nome: "Santo Ângelo", quantidade: 1}
+{ nome: "Rio Grande", quantidade: 5},
+{ nome: "Canoas", quantidade: 1},
+{ nome: "Porto Alegre", quantidade: 3},
+{ nome: "Alvorada", quantidade: 3},
+{ nome: "Hulha Negra", quantidade: 1},
+{ nome: "Santo Ângelo", quantidade: 1},
+{ nome: "Jaquirana", quantidade: 1},
+{ nome: "São Marcos", quantidade: 1},
+{ nome: "Caxias do Sul", quantidade: 4}
   ]
 };
 
@@ -163,5 +175,6 @@ function init(){
 
 // Run
 document.addEventListener("DOMContentLoaded", init);
+
 
 
