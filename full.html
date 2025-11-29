@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Lista completa — Ranking</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* pequenas alterações para full page */
+    .container { max-width: 900px; margin: 18px auto; }
+    .back { margin-bottom: 12px; display:inline-block; text-decoration:none; color:#2b6cb0; font-weight:600; }
+  </style>
+</head>
+<body>
+  <main class="container">
+    <a class="back" href="index.html">← Voltar</a>
+    <h1 id="full-title">Lista completa</h1>
+    <div class="card">
+      <div class="table-wrap">
+        <table id="full-table" class="ranking-table">
+          <thead><tr><th>Colocação</th><th>Nome</th><th>Quantidade</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+  </main>
+
+  <!-- Inclui o script.js que contém os dados -->
+  <script src="script.js"></script>
+  
+  <script>
+    console.log(`Ranking Big Day Full - Versão ${CACHE_VERSION}`);
+
+    function renderAll(tableId, data){
+      const tbody = document.querySelector(`#${tableId} tbody`);
+      tbody.innerHTML = "";
+      for (const row of data){
+        const tr = document.createElement('tr');
+        tr.innerHTML = `<td>${row.colocacao}</td><td>${escapeHtml(row.nome)}</td><td>${row.quantidade}</td>`;
+        tbody.appendChild(tr);
+      }
+    }
+
+    function getTitleByType(type) {
+      const titles = {
+        'observadores_species': 'Observadores — Nº de espécies (completo)',
+        'observadores_lists': 'Observadores — Nº de listas (completo)',
+        'municipios_species': 'Municípios — Nº de espécies (completo)',
+        'municipios_lists': 'Municípios — Nº de listas (completo)'
+      };
+      return titles[type] || 'Lista completa';
+    }
+
+    function initFull(){
+      const params = new URLSearchParams(location.search);
+      const type = params.get('type') || 'observadores_species';
+      
+      document.getElementById('full-title').textContent = getTitleByType(type);
+      
+      // Busca os dados do script.js principal
+      const rawData = getRankingData(type);
+      const ranked = prepareRanking(rawData);
+      renderAll("full-table", ranked);
+    }
+
+    document.addEventListener('DOMContentLoaded', initFull);
+  </script>
+</body>
+</html>

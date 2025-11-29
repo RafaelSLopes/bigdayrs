@@ -1,0 +1,77 @@
+/* Reset simples */
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html,body { height: 100%; font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; color:#222; background: #f6f7fb; }
+
+/* Container */
+.container { max-width: 980px; margin: 24px auto; padding: 16px; }
+
+/* Header / Logo */
+.header { text-align: center; margin-bottom: 20px; }
+.logo { 
+  width: 120px; 
+  height: 120px; 
+  margin: 0 auto 8px; 
+  border-radius: 12px; 
+  overflow: hidden; 
+  display: flex; 
+  align-items: center; 
+  justify-content: center;
+  /* Remove o fundo azul para transparência */
+  background: transparent; 
+}
+.logo-image {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* Mantém a proporção e mostra imagem completa */
+  display: block;
+}
+.event-title { font-size: 1.05rem; color: #2d3748; margin-top: 6px; }
+
+/* Rankings layout */
+.rankings { display: grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+
+/* Card */
+.card { background: white; padding: 14px; border-radius: 10px; box-shadow: 0 6px 18px rgba(20,20,40,0.06); }
+.card h2 { font-size: 0.98rem; margin-bottom: 10px; color:#1a202c; }
+
+/* Table */
+.table-wrap { overflow-x:auto; }
+.ranking-table { width:100%; border-collapse: collapse; font-size: 0.95rem; }
+.ranking-table thead th { text-align:left; padding: 8px 10px; border-bottom: 2px solid #edf2f7; font-weight:600; }
+.ranking-table tbody td { padding: 10px; border-bottom:1px solid #f0f2f6; vertical-align: middle; }
+.ranking-table tbody tr:nth-child(odd) { background: #fff; }
+.ranking-table tbody tr:nth-child(even) { background: #fbfcff; }
+
+/* More button */
+.more { margin-top: 12px; text-align: right; }
+.more a { text-decoration: none; display: inline-block; padding: 8px 12px; border-radius: 8px; background: #3182ce; color: white; font-weight:600; font-size:0.9rem; }
+
+/* Responsive: mobile stack and logo first */
+@media (max-width: 720px) {
+  .rankings { grid-template-columns: 1fr; }
+  .logo { width: 110px; height: 110px; }
+  .container { padding: 12px; margin-top: 8px; }
+  .more { text-align: center; }
+  .more a { width: 100%; }
+}
+
+/* Center numeric column */
+.ranking-table td:nth-child(1), .ranking-table td:nth-child(3) { text-align: center; width: 80px; }
+
+/* Footer de atualização */
+.update-footer {
+  text-align: center;
+  margin-top: 40px;
+  padding: 20px;
+  color: #718096;
+  font-size: 0.9rem;
+  border-top: 1px solid #e2e8f0;
+}
+
+.update-footer p {
+  margin: 0;
+}
+
+.update-footer strong {
+  color: #4a5568;
+}
