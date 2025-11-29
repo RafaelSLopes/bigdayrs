@@ -8,26 +8,44 @@ const UPDATE_TEXT = "31 de dezembro de 2024, 23:59<br><br> O Big Day RS é um ev
 const RANKING_DATA = {
   // Observadores - Espécies
   observadores_species: [
-  //  { nome: "João Silva", quantidade: 162 },
-  //  { nome: "Maria Costa", quantidade: 158 }
+  { nome: "Raphael Kurz - Aves do Sul", quantidade: 58},
+  { nome: "Guillermo Andreo", quantidade: 79},
+  { nome: "Ines Vasconcelos", quantidade: 16},
+  { nome: "Demétrius Lima", quantidade: 12},
+  { nome: "Gustavo Henrique Lambert", quantidade: 18},
+  { nome: "Márcia Rodrigues", quantidade: 26}
   ],
   
   // Observadores - Listas
   observadores_lists: [
-  //  { nome: "João Silva", quantidade: 48 },
-  //  { nome: "Maria Costa", quantidade: 45 }
+  { nome: "Raphael Kurz - Aves do Sul", quantidade: 6},
+  { nome: "Guillermo Andreo", quantidade: 3},
+  { nome: "Ines Vasconcelos", quantidade: 1},
+  { nome: "Demétrius Lima", quantidade: 3},
+  { nome: "Gustavo Henrique Lambert", quantidade: 1},
+  { nome: "Márcia Rodrigues", quantidade: 1}
   ],
   
   // Municípios - Espécies
   municipios_species: [
-  //  { nome: "Porto Alegre", quantidade: 285 },
-  //  { nome: "Viamão", quantidade: 267 }
+  { nome: "Pelotas", quantidade: 8},
+  { nome: "Rio Grande", quantidade: 56},
+  { nome: "Canoas", quantidade: 59},
+  { nome: "Porto Alegre", quantidade: 50},
+  { nome: "Alvorada", quantidade: 12},
+  { nome: "Hulha Negra", quantidade: 18},
+  { nome: "Santo Ângelo", quantidade: 26}
   ],
   
   // Municípios - Listas
   municipios_lists: [
-  //  { nome: "Porto Alegre", quantidade: 85 },
-  //  { nome: "Viamão", quantidade: 78 }
+  { nome: "Pelotas", quantidade: 1},
+  { nome: "Rio Grande", quantidade: 5},
+  { nome: "Canoas", quantidade: 1},
+  { nome: "Porto Alegre", quantidade: 3},
+  { nome: "Alvorada", quantidade: 3},
+  { nome: "Hulha Negra", quantidade: 1},
+  { nome: "Santo Ângelo", quantidade: 1}
   ]
 };
 
@@ -145,3 +163,4 @@ function init(){
 
 // Run
 document.addEventListener("DOMContentLoaded", init);
+
